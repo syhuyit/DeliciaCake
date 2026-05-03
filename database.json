@@ -1,0 +1,10 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Bánh kem dâu",
+      "price": 30000,
+      "image": "https://via.placeholder.com/150"
+    }
+  ]
+}
