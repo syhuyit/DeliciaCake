@@ -1,12 +1,6 @@
 import { NavLink } from "react-router-dom";
 
 function Navbar() {
-  const linkStyle = ({ isActive }) => ({
-    color: isActive ? "#ffd700" : "white",
-    textDecoration: "none",
-    fontWeight: "bold",
-  });
-
   return (
     <div
       style={{
@@ -16,12 +10,8 @@ function Navbar() {
         gap: "25px",
       }}
     >
-      <NavLink to="/" style={linkStyle}>
-        Home
-      </NavLink>
-
-      <NavLink to="/menu" style={linkStyle}>
-        Menu
+      <NavLink to="/" style={{ textDecoration: "none" }}>
+        <h3 style={{ color: "white", margin: 0 }}>🍰 DeliciaCake</h3>
       </NavLink>
     </div>
   );

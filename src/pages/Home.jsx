@@ -10,7 +10,7 @@ function Home() {
         style={{
           height: "300px",
           background:
-            "url('https://via.placeholder.com/1200x300') center/cover",
+            "linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(...)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -33,20 +33,42 @@ function Home() {
         <h2>Ngọt ngào mỗi ngày</h2>
         <p>Thưởng thức những chiếc bánh ngon nhất tại cửa hàng của chúng tôi</p>
 
-        <button
-          onClick={() => navigate("/menu")}
+        <div
           style={{
-            background: "#56B6C6",
-            color: "white",
-            border: "none",
-            padding: "10px 20px",
-            borderRadius: "10px",
-            cursor: "pointer",
+            display: "flex",
+            gap: "15px",
+            justifyContent: "center",
             marginTop: "10px",
           }}
         >
-          Mua ngay
-        </button>
+          <button
+            onClick={() => navigate("/menu")}
+            style={{
+              background: "#56B6C6",
+              color: "white",
+              border: "none",
+              padding: "10px 20px",
+              borderRadius: "10px",
+              cursor: "pointer",
+            }}
+          >
+            Mua ngay
+          </button>
+
+          <button
+            onClick={() => navigate("/customcake")}
+            style={{
+              background: "#56B6C6",
+              color: "white",
+              border: "none",
+              padding: "10px 20px",
+              borderRadius: "10px",
+              cursor: "pointer",
+            }}
+          >
+            Đặt bánh ngay
+          </button>
+        </div>
       </div>
 
       {/* Giới thiệu */}
