@@ -6,6 +6,9 @@ function CartProvider({ children }) {
     const data = localStorage.getItem("cart");
     return data ? JSON.parse(data) : [];
   });
+  const clearCart = () => {
+    setCart([]);
+  };
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
@@ -55,6 +58,7 @@ function CartProvider({ children }) {
         decreaseQty,
         removeItem,
         getTotal,
+        clearCart,
       }}
     >
       {children}

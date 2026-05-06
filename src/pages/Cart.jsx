@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
   const { cart, increaseQty, decreaseQty, removeItem, getTotal } =
     useContext(CartContext);
+  const navigate = useNavigate();
 
   return (
     <div
@@ -68,6 +70,7 @@ function Cart() {
       </h5>
 
       <button
+        onClick={() => navigate("/checkout")}
         style={{
           width: "100%",
           background: "#16a085",
