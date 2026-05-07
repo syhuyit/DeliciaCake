@@ -2,9 +2,30 @@
   "products": [
     {
       "id": 1,
-      "name": "Bánh kem dâu",
-      "price": 30000,
-      "image": "https://via.placeholder.com/150"
+      "name": "Bánh mousse vải hoa hồng",
+      "category": "Bánh kem",
+      "description": "Cốt chiffon phô mai mềm mịn kết hợp lớp mousse vải hoa hồng thơm dịu, mang đến hương vị thanh mát và đầy nữ tính. Vị vải ngọt nhẹ hòa cùng hương hoa hồng tinh tế tạo nên cảm giác nhẹ nhàng, dễ chịu. Bánh trang trí hoa xinh xắn. Vị bánh: Thơm vải, thoảng hương hoa hồng, ngọt thanh.",
+      "size": "8 inch - 21 cm",
+      "price": 450000,
+      "image": "images/mousse-vai-hoa-hong.png"
+    },
+    {
+      "id": 2,
+      "name": "Bánh mousse xoài mịn",
+      "category": "Bánh kem",
+      "description": "Lớp mousse xoài mát lạnh kết hợp cùng cốt chiffon phô mai béo ngậy, mang đến hương vị tươi mới của xoài chín mọng. Mặt bánh phủ tráng gương xoài óng ánh cùng sốt xoài dẻo thơm, tạo nên vẻ ngoài bắt mắt và hấp dẫn. Vị bánh: Thơm xoài chín, ngọt thanh, béo nhẹ.",
+      "size": "8 inch - 21 cm",
+      "price": 450000,
+      "image": "images/mousse-xoai-min.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Bánh mousse chanh leo",
+      "category": "Bánh kem",
+      "description": "Mousse chanh leo mượt mà trên cốt bánh chiffon phô mai mềm ẩm, phủ tráng gương pha xốt chanh leo dẻo thơm. Vị bánh: ngọt thanh, chua dịu thoảng vị kem sữa ngậy béo, thơm hương chanh leo tươi.",
+      "size": "8 inch - 21 cm",
+      "price": 450000,
+      "image": "images/mousse-chanh-leo.png"
     }
   ]
 }

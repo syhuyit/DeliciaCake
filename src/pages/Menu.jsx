@@ -1,13 +1,24 @@
-import products from "../services/productService";
+import { getProducts } from "../services/productService";
 import ProductCard from "../components/ProductCard";
 import Cart from "./Cart";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 function Menu() {
+  const [products, setProducts] = useState([]);
   const [category, setCategory] = useState("all");
   const [keyword, setKeyword] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const inputRef = useRef();
+
+  const categories = ["all", ...new Set(products.map((item) => item.category))];
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+  const fetchProducts = async () => {
+    const data = await getProducts();
+    return setProducts(data);
+  };
 
   const handleReset = () => {
     setCategory("all");
@@ -41,7 +52,7 @@ function Menu() {
       >
         <h5 style={{ marginBottom: "10px" }}>Danh mục</h5>
 
-        {["all", "sweet", "savory"].map((item) => (
+        {categories.map((item) => (
           <button
             key={item}
             onClick={() => setCategory(item)}
@@ -56,11 +67,7 @@ function Menu() {
               color: category === item ? "white" : "black",
             }}
           >
-            {item === "all"
-              ? "Tất cả"
-              : item === "sweet"
-                ? "Bánh ngọt"
-                : "Bánh mặn"}
+            {item === "all" ? "Tất cả" : item}
           </button>
         ))}
       </div>
