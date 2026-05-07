@@ -1,6 +1,8 @@
+import "../css/ProductCard.css";
 function ProductCard({ product }) {
   return (
     <div
+      className="product-card"
       style={{
         background: "white",
         borderRadius: "16px",
@@ -15,6 +17,7 @@ function ProductCard({ product }) {
     >
       {/* IMAGE */}
       <img
+        className="product-image"
         src={product.image}
         alt={product.name}
         style={{
@@ -63,6 +66,7 @@ function ProductCard({ product }) {
 
       {/* BUTTON */}
       <button
+        className="product-btn"
         style={{
           marginTop: "auto",
 
