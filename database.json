@@ -26,6 +26,15 @@
       "size": "8 inch - 21 cm",
       "price": 450000,
       "image": "images/mousse-chanh-leo.png"
+    },
+    {
+      "id": 4,
+      "name": "Bánh dừa phô mai sâu đậm",
+      "category": "Bánh ngọt",
+      "description": "Bánh phô mai dừa sâu đậm là cái bắt tay rất ăn ý giữa nhân phô mai kem béo mịn và hương dừa thơm dịu, thêm chút mật ong để tổng thể ngọt ngào theo cách cực duyên dáng. Mềm, thơm, ngậy vừa phải và không hề ngấy, đây là kiểu bánh dành cho team mê vị phô mai beo béo nhưng vẫn thích cảm giác nhẹ dịu, tinh tế như mây. Thành phần: Bột mỳ, bơ, trứng gà, đường, sốt phô mai, sốt cơm dừa, dầu ăn, sữa bột, bột nở làm bánh, men, muối, nước.",
+      "size": "4 cm",
+      "price": 25000,
+      "image": "images/dua-pho-mai.png"
     }
   ]
 }

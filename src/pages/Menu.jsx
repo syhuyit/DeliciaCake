@@ -1,36 +1,81 @@
 import { getProducts } from "../services/productService";
 import ProductCard from "../components/ProductCard";
 import Cart from "./Cart";
+
 import { useState, useRef, useEffect } from "react";
 
 function Menu() {
+  // ==============================
+  // STATE
+  // ==============================
+
+  // Danh sách sản phẩm
   const [products, setProducts] = useState([]);
+
+  // Category hiện tại
   const [category, setCategory] = useState("all");
+
+  // Keyword dùng để filter
   const [keyword, setKeyword] = useState("");
+
+  // Giá trị input search
   const [searchValue, setSearchValue] = useState("");
+
+  // Sắp xếp giá
+  const [sortOrder, setSortOrder] = useState("");
+
+  // Trang hiện tại
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Ref focus input
   const inputRef = useRef();
 
-  const categories = ["all", ...new Set(products.map((item) => item.category))];
+  // Số sản phẩm mỗi trang
+  const productsPerPage = 4;
+
+  // ==============================
+  // FETCH API
+  // ==============================
 
   useEffect(() => {
     fetchProducts();
   }, []);
+
   const fetchProducts = async () => {
     const data = await getProducts();
-    return setProducts(data);
+    setProducts(data);
   };
+
+  // ==============================
+  // CATEGORY LIST
+  // Tạo category động từ database
+  // ==============================
+
+  const categories = ["all", ...new Set(products.map((item) => item.category))];
+
+  // ==============================
+  // HANDLE RESET
+  // ==============================
 
   const handleReset = () => {
     setCategory("all");
     setKeyword("");
     setSearchValue("");
+    setSortOrder("");
+    setCurrentPage(1);
+
     inputRef.current.focus();
   };
 
-  // Filter logic
+  // ==============================
+  // FILTER PRODUCTS
+  // ==============================
+
   const filteredProducts = products.filter((item) => {
+    // Filter category
     const matchCategory = category === "all" || category === item.category;
 
+    // Filter keyword
     const matchKeyword = item.name
       .toLowerCase()
       .includes(keyword.toLowerCase());
@@ -38,33 +83,91 @@ function Menu() {
     return matchCategory && matchKeyword;
   });
 
+  // ==============================
+  // SORT PRODUCTS
+  // ==============================
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    // Giá tăng dần
+    if (sortOrder === "asc") {
+      return a.price - b.price;
+    }
+
+    // Giá giảm dần
+    if (sortOrder === "desc") {
+      return b.price - a.price;
+    }
+
+    return 0;
+  });
+
+  // ==============================
+  // PAGINATION
+  // ==============================
+
+  // Tổng số trang
+  const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
+
+  // Vị trí bắt đầu
+  const startIndex = (currentPage - 1) * productsPerPage;
+
+  // Danh sách sản phẩm của trang hiện tại
+  const currentProducts = sortedProducts.slice(
+    startIndex,
+    startIndex + productsPerPage,
+  );
+
+  // ==============================
+  // UI
+  // ==============================
+
   return (
-    <div style={{ display: "flex", padding: "20px", gap: "20px" }}>
-      {/* Sidebar */}
+    <div
+      style={{
+        display: "flex",
+        gap: "25px",
+        padding: "25px",
+        background: "#f7f8fa",
+        minHeight: "100vh",
+      }}
+    >
+      {/* ==============================
+          SIDEBAR
+      ============================== */}
+
       <div
         style={{
-          width: "200px",
-          background: "#fff",
-          padding: "15px",
-          borderRadius: "12px",
-          boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
+          width: "220px",
+          background: "white",
+          padding: "20px",
+          borderRadius: "16px",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+          height: "fit-content",
         }}
       >
-        <h5 style={{ marginBottom: "10px" }}>Danh mục</h5>
+        <h4 style={{ marginBottom: "15px" }}>Danh mục</h4>
 
         {categories.map((item) => (
           <button
             key={item}
-            onClick={() => setCategory(item)}
+            onClick={() => {
+              setCategory(item);
+              setCurrentPage(1);
+            }}
             style={{
               width: "100%",
-              marginBottom: "8px",
-              padding: "8px",
-              borderRadius: "8px",
+              marginBottom: "10px",
+              padding: "10px",
+              borderRadius: "10px",
               border: "none",
               cursor: "pointer",
-              background: category === item ? "#56B6C6" : "#f0f0f0",
-              color: category === item ? "white" : "black",
+              fontWeight: "500",
+
+              background: category === item ? "#56B6C6" : "#f3f3f3",
+
+              color: category === item ? "white" : "#333",
+
+              transition: "0.2s",
             }}
           >
             {item === "all" ? "Tất cả" : item}
@@ -72,84 +175,180 @@ function Menu() {
         ))}
       </div>
 
-      {/* Main content */}
+      {/* ==============================
+          MAIN CONTENT
+      ============================== */}
+
       <div style={{ flex: 1 }}>
-        {/* Search */}
+        {/* ==============================
+            SEARCH + SORT
+        ============================== */}
+
         <div
           style={{
             display: "flex",
-            gap: "10px",
-            marginBottom: "15px",
-            maxWidth: "400px",
+            gap: "12px",
+            marginBottom: "20px",
+            alignItems: "center",
+            flexWrap: "wrap",
           }}
         >
+          {/* Search Input */}
           <input
             ref={inputRef}
             value={searchValue}
             type="text"
             placeholder="🔍 Tìm bánh..."
             onChange={(e) => setSearchValue(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                setKeyword(searchValue);
+                setCurrentPage(1);
+              }
+            }}
             style={{
-              flex: 1,
-              padding: "10px",
-              borderRadius: "8px",
-              border: "1px solid #ccc",
+              width: "260px",
+              padding: "12px",
+              borderRadius: "10px",
+              border: "1px solid #ddd",
               outline: "none",
+              fontSize: "14px",
             }}
           />
 
+          {/* Search Button */}
           <button
-            onClick={() => setKeyword(searchValue)}
+            onClick={() => {
+              setKeyword(searchValue);
+              setCurrentPage(1);
+            }}
             style={{
               background: "#FF7F9C",
               color: "white",
               border: "none",
-              padding: "10px 15px",
-              borderRadius: "8px",
+              padding: "12px 18px",
+              borderRadius: "10px",
               cursor: "pointer",
+              fontWeight: "500",
             }}
-            onMouseEnter={(e) => (e.target.style.opacity = "0.8")}
-            onMouseLeave={(e) => (e.target.style.opacity = "1")}
           >
             Tìm
           </button>
+
+          {/* Reset Button */}
           <button
             onClick={handleReset}
             style={{
-              background: "#ccc",
-              color: "black",
+              background: "#dcdcdc",
               border: "none",
-              padding: "10px 15px",
-              borderRadius: "8px",
+              padding: "12px 18px",
+              borderRadius: "10px",
               cursor: "pointer",
             }}
           >
             Reset
           </button>
+
+          {/* Sort */}
+          <select
+            value={sortOrder}
+            onChange={(e) => {
+              setSortOrder(e.target.value);
+              setCurrentPage(1);
+            }}
+            style={{
+              padding: "12px",
+              borderRadius: "10px",
+              border: "1px solid #ddd",
+              marginLeft: "auto",
+            }}
+          >
+            <option value="">Sắp xếp theo giá</option>
+
+            <option value="asc">Giá tăng dần</option>
+
+            <option value="desc">Giá giảm dần</option>
+          </select>
         </div>
 
-        <h3 style={{ marginBottom: "15px" }}>Danh sách bánh</h3>
+        {/* Title */}
+        <h2 style={{ marginBottom: "20px" }}>Danh sách bánh</h2>
 
-        {/* Product grid */}
+        {/* ==============================
+            PRODUCT GRID
+        ============================== */}
+
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
-            gap: "20px",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gap: "25px",
           }}
         >
-          {filteredProducts.length > 0 ? (
-            filteredProducts.map((item) => (
+          {currentProducts.length > 0 ? (
+            currentProducts.map((item) => (
               <ProductCard key={item.id} product={item} />
             ))
           ) : (
             <p>Không tìm thấy sản phẩm</p>
           )}
         </div>
+
+        {/* ==============================
+            PAGINATION
+        ============================== */}
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "10px",
+            marginTop: "30px",
+          }}
+        >
+          {/* Prev */}
+          <button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage(currentPage - 1)}
+          >
+            ←
+          </button>
+
+          {/* Number */}
+          {[...Array(totalPages)].map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentPage(index + 1)}
+              style={{
+                background: currentPage === index + 1 ? "#56B6C6" : "#f0f0f0",
+
+                color: currentPage === index + 1 ? "white" : "black",
+
+                border: "none",
+                padding: "8px 14px",
+                borderRadius: "8px",
+                cursor: "pointer",
+              }}
+            >
+              {index + 1}
+            </button>
+          ))}
+
+          {/* Next */}
+          <button
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage(currentPage + 1)}
+          >
+            →
+          </button>
+        </div>
       </div>
 
-      {/* Cart */}
-      <div style={{ width: "280px" }}>
+      {/* ==============================
+          CART
+      ============================== */}
+
+      <div style={{ width: "300px" }}>
         <Cart />
       </div>
     </div>
