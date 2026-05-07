@@ -257,6 +257,8 @@ function Menu() {
               setCurrentPage(1);
             }}
             style={{
+              backgroundColor: "#FF61F8",
+              color: "white",
               padding: "12px",
               borderRadius: "10px",
               border: "1px solid #ddd",

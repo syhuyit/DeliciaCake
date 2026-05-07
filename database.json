@@ -35,6 +35,15 @@
       "size": "4 cm",
       "price": 25000,
       "image": "images/dua-pho-mai.png"
+    },
+    {
+      "id": 5,
+      "name": "Bánh kem mật ngọt",
+      "category": "Bánh kem",
+      "description": "Cốt chiffon vani mềm nhẹ kết hợp lớp thạch dừa dai giòn cùng mứt lê táo quế ngọt dịu. Hương quế thoang thoảng hòa cùng vị trái cây tươi mát mang đến cảm giác thanh nhẹ, dễ thưởng thức. Bánh phủ kem mịn và trang trí tinh tế, nữ tính. Vị bánh: Thơm quế nhẹ, ngọt thanh, tươi mát.",
+      "size": "8 inch - 21 cm",
+      "price": 380000,
+      "image": "images/kem-mat-ngot.png"
     }
   ]
 }

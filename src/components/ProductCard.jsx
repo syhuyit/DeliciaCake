@@ -1,52 +1,78 @@
-import { useContext } from "react";
-import { CartContext } from "../context/CartContext";
-
 function ProductCard({ product }) {
-  const { addToCart } = useContext(CartContext);
-
   return (
     <div
       style={{
-        background: "#fff",
-        borderRadius: "15px",
+        background: "white",
+        borderRadius: "16px",
         padding: "15px",
-        textAlign: "center",
-        boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-        transition: "0.3s",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = "scale(1.05)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = "scale(1)";
+        boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
+
+        display: "flex",
+        flexDirection: "column",
+
+        height: "100%",
       }}
     >
+      {/* IMAGE */}
       <img
         src={product.image}
-        alt=""
-        style={{ width: "100%", borderRadius: "10px" }}
+        alt={product.name}
+        style={{
+          width: "100%",
+          height: "180px",
+          objectFit: "cover",
+          borderRadius: "12px",
+          marginBottom: "15px",
+        }}
       />
 
-      <h5 style={{ marginTop: "10px" }}>{product.name}</h5>
-
-      <p style={{ color: "#2ecc71", fontWeight: "bold" }}>{product.price}đ</p>
-
-      <button
-        onClick={() => addToCart(product)}
+      {/* NAME */}
+      <div
         style={{
+          minHeight: "60px",
+          marginBottom: "10px",
+        }}
+      >
+        <h4
+          style={{
+            margin: 0,
+            fontSize: "22px",
+          }}
+        >
+          {product.name}
+        </h4>
+      </div>
+
+      {/* PRICE */}
+      <div
+        style={{
+          marginBottom: "15px",
+        }}
+      >
+        <p
+          style={{
+            color: "#2ecc71",
+            fontWeight: "bold",
+            fontSize: "20px",
+            margin: 0,
+          }}
+        >
+          {product.price}đ
+        </p>
+      </div>
+
+      {/* BUTTON */}
+      <button
+        style={{
+          marginTop: "auto",
+
           background: "#56B6C6",
           color: "white",
           border: "none",
-          padding: "8px 12px",
-          borderRadius: "8px",
+          padding: "12px",
+          borderRadius: "10px",
           cursor: "pointer",
-          transition: "0.2s",
-        }}
-        onMouseDown={(e) => {
-          e.target.style.transform = "scale(0.9)";
-        }}
-        onMouseUp={(e) => {
-          e.target.style.transform = "scale(1)";
+          fontWeight: "500",
         }}
       >
         Thêm vào giỏ
