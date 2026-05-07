@@ -3,86 +3,218 @@ import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 
 function Cart() {
-  const { cart, increaseQty, decreaseQty, removeItem, getTotal } =
-    useContext(CartContext);
+  // =========================
+  // CONTEXT
+  // =========================
+  const { cart, removeFromCart, clearCart, getTotal } = useContext(CartContext);
+
   const navigate = useNavigate();
+
+  // =========================
+  // EMPTY CART
+  // =========================
+  if (cart.length === 0) {
+    return (
+      <div
+        style={{
+          background: "white",
+          padding: "20px",
+          borderRadius: "16px",
+          boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
+        }}
+      >
+        <h3>🛒 Giỏ hàng</h3>
+
+        <p>Chưa có sản phẩm nào</p>
+      </div>
+    );
+  }
 
   return (
     <div
       style={{
-        background: "#fff",
-        padding: "15px",
-        borderRadius: "15px",
-        boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+        background: "white",
+        padding: "20px",
+        borderRadius: "16px",
+        boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
+        position: "sticky",
+        top: "20px",
       }}
     >
-      <h4>🛒 Giỏ hàng</h4>
-
-      {cart.length === 0 ? (
-        <p>Chưa có sản phẩm</p>
-      ) : (
-        cart.map((item) => (
-          <div
-            key={item.id}
-            style={{
-              padding: "10px 0",
-              borderBottom: "1px solid #eee",
-              transition: "0.2s",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "#f9f9f9";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "white";
-            }}
-          >
-            <b>{item.name}</b>
-            <br />
-            {item.price}đ
-            <div style={{ marginTop: "5px" }}>
-              <button
-                style={{ color: "green", border: "none", background: "none" }}
-                onClick={() => decreaseQty(item.id)}
-              >
-                -
-              </button>
-              <span style={{ margin: "0 10px" }}>{item.quantity}</span>
-              <button
-                style={{ color: "green", border: "none", background: "none" }}
-                onClick={() => increaseQty(item.id)}
-              >
-                +
-              </button>
-            </div>
-            <hr />
-            <button
-              onClick={() => removeItem(item.id)}
-              style={{ color: "red", border: "none", background: "none" }}
-            >
-              Xoá
-            </button>
-          </div>
-        ))
-      )}
-
-      <h5 style={{ marginTop: "10px", color: "#27ae60" }}>
-        Tổng: {getTotal()}đ
-      </h5>
-
-      <button
-        onClick={() => navigate("/checkout")}
+      {/* ========================= */}
+      {/* TITLE */}
+      {/* ========================= */}
+      <h3
         style={{
-          width: "100%",
-          background: "#16a085",
-          color: "white",
-          padding: "10px",
-          border: "none",
-          borderRadius: "10px",
-          marginTop: "10px",
+          marginBottom: "20px",
         }}
       >
-        Thanh toán
-      </button>
+        🛒 Giỏ hàng
+      </h3>
+
+      {/* ========================= */}
+      {/* PRODUCT LIST */}
+      {/* ========================= */}
+      {cart.map((item) => (
+        <div
+          key={item.id}
+          style={{
+            borderBottom: "1px solid #eee",
+            paddingBottom: "15px",
+            marginBottom: "15px",
+          }}
+        >
+          {/* IMAGE + INFO */}
+          <div
+            style={{
+              display: "flex",
+              gap: "10px",
+            }}
+          >
+            {/* IMAGE */}
+            <img
+              src={item.image}
+              alt={item.name}
+              style={{
+                width: "70px",
+                height: "70px",
+                objectFit: "cover",
+                borderRadius: "10px",
+              }}
+            />
+
+            {/* INFO */}
+            <div style={{ flex: 1 }}>
+              {/* NAME */}
+              <h5
+                style={{
+                  margin: 0,
+                  fontSize: "16px",
+                }}
+              >
+                {item.name}
+              </h5>
+
+              {/* PRICE */}
+              <p
+                style={{
+                  color: "#2ecc71",
+                  fontWeight: "bold",
+                  margin: "5px 0",
+                }}
+              >
+                {item.price.toLocaleString("vi-VN")}đ
+              </p>
+
+              {/* QUANTITY */}
+              <p
+                style={{
+                  margin: 0,
+                  fontSize: "14px",
+                  color: "#666",
+                }}
+              >
+                Số lượng: {item.quantity}
+              </p>
+            </div>
+          </div>
+
+          {/* REMOVE BUTTON */}
+          <button
+            onClick={() => removeFromCart(item.id)}
+            style={{
+              marginTop: "10px",
+
+              background: "#ff6b6b",
+              color: "white",
+
+              border: "none",
+
+              padding: "8px 12px",
+
+              borderRadius: "8px",
+
+              cursor: "pointer",
+
+              width: "100%",
+            }}
+          >
+            Xóa sản phẩm
+          </button>
+        </div>
+      ))}
+
+      {/* ========================= */}
+      {/* TOTAL */}
+      {/* ========================= */}
+      <div
+        style={{
+          marginTop: "20px",
+          borderTop: "2px solid #eee",
+          paddingTop: "15px",
+        }}
+      >
+        <h4>
+          Tổng tiền:{" "}
+          <span style={{ color: "#2ecc71" }}>
+            {getTotal().toLocaleString("vi-VN")}đ
+          </span>
+        </h4>
+      </div>
+
+      {/* ========================= */}
+      {/* BUTTONS */}
+      {/* ========================= */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px",
+          marginTop: "20px",
+        }}
+      >
+        {/* CHECKOUT */}
+        <button
+          onClick={() => navigate("/checkout")}
+          style={{
+            background: "#56B6C6",
+            color: "white",
+
+            border: "none",
+
+            padding: "12px",
+
+            borderRadius: "10px",
+
+            cursor: "pointer",
+
+            fontWeight: "bold",
+          }}
+        >
+          Thanh toán
+        </button>
+
+        {/* CLEAR CART */}
+        <button
+          onClick={clearCart}
+          style={{
+            background: "#ddd",
+            color: "black",
+
+            border: "none",
+
+            padding: "12px",
+
+            borderRadius: "10px",
+
+            cursor: "pointer",
+
+            fontWeight: "bold",
+          }}
+        >
+          Xóa toàn bộ
+        </button>
+      </div>
     </div>
   );
 }

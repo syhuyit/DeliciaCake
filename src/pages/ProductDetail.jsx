@@ -1,70 +1,280 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+
 import { getProducts } from "../services/productService";
+import { CartContext } from "../context/CartContext";
+
 function ProductDetail() {
+  // ===============================
+  // GET ID FROM URL
+  // ===============================
   const { id } = useParams();
+
+  // ===============================
+  // CONTEXT
+  // ===============================
+  const { addToCart } = useContext(CartContext);
+
+  // ===============================
+  // STATES
+  // ===============================
   const [product, setProduct] = useState(null);
 
+  const [quantity, setQuantity] = useState(1);
+
+  // ===============================
+  // FETCH PRODUCT
+  // ===============================
   useEffect(() => {
     fetchProduct();
-  }, []);
+  }, [id]);
 
   const fetchProduct = async () => {
     const data = await getProducts();
-    const foundProduct = data.find((item) => item.id === Number(id));
+
+    console.log("URL ID:", id);
+    console.log("DATA:", data);
+
+    // FIX TYPE STRING/NUMBER
+    const foundProduct = data.find((item) => String(item.id) === String(id));
+
+    console.log("FOUND:", foundProduct);
+
     setProduct(foundProduct);
   };
 
+  // ===============================
+  // LOADING
+  // ===============================
   if (!product) {
-    return <h2>Đang tải...</h2>;
+    return (
+      <div
+        style={{
+          padding: "50px",
+          textAlign: "center",
+          fontSize: "28px",
+          fontWeight: "bold",
+        }}
+      >
+        Đang tải sản phẩm...
+      </div>
+    );
   }
+
+  // ===============================
+  // HANDLE ADD TO CART
+  // ===============================
+  const handleAddToCart = () => {
+    addToCart(product, quantity);
+
+    alert(`Đã thêm ${quantity} sản phẩm vào giỏ hàng`);
+  };
 
   return (
     <div
       style={{
         padding: "40px",
-        display: "flex",
-        gap: "40px",
+        background: "#f8f9fa",
+        minHeight: "100vh",
       }}
     >
-      {/* IMAGE */}
-      <img
-        src={product.image}
-        alt={product.name}
+      {/* MAIN CONTAINER */}
+      <div
         style={{
-          width: "400px",
-          borderRadius: "16px",
+          maxWidth: "1200px",
+          margin: "0 auto",
+
+          background: "white",
+          borderRadius: "20px",
+
+          padding: "40px",
+
+          display: "flex",
+          gap: "50px",
+
+          boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
         }}
-      />
-
-      {/* INFO */}
-      <div>
-        <h1>{product.name}</h1>
-
-        <h3 style={{ color: "#2ecc71" }}>{product.price}đ</h3>
-
-        <p>
-          <b>Kích thước:</b> {product.size}
-        </p>
-
-        <p>
-          <b>Danh mục:</b> {product.category}
-        </p>
-
-        <p>{product.description}</p>
-
-        <button
+      >
+        {/* ========================= */}
+        {/* LEFT SIDE - IMAGE */}
+        {/* ========================= */}
+        <div
           style={{
-            background: "#56B6C6",
-            color: "white",
-            border: "none",
-            padding: "12px 20px",
-            borderRadius: "10px",
-            cursor: "pointer",
+            flex: 1,
           }}
         >
-          Thêm vào giỏ
-        </button>
+          <img
+            src={product.image}
+            alt={product.name}
+            style={{
+              width: "100%",
+              borderRadius: "20px",
+
+              transition: "0.3s",
+
+              cursor: "pointer",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.transform = "scale(1.03)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = "scale(1)";
+            }}
+          />
+        </div>
+
+        {/* ========================= */}
+        {/* RIGHT SIDE - INFO */}
+        {/* ========================= */}
+        <div
+          style={{
+            flex: 1,
+
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          {/* NAME */}
+          <h1
+            style={{
+              fontSize: "42px",
+              marginBottom: "20px",
+            }}
+          >
+            {product.name}
+          </h1>
+
+          {/* PRICE */}
+          <h2
+            style={{
+              color: "#2ecc71",
+              marginBottom: "25px",
+              fontSize: "34px",
+            }}
+          >
+            {product.price.toLocaleString("vi-VN")}đ
+          </h2>
+
+          {/* CATEGORY */}
+          <div
+            style={{
+              marginBottom: "12px",
+              fontSize: "18px",
+            }}
+          >
+            <b>Danh mục:</b> {product.category}
+          </div>
+
+          {/* SIZE */}
+          <div
+            style={{
+              marginBottom: "25px",
+              fontSize: "18px",
+            }}
+          >
+            <b>Kích thước:</b> {product.size}
+          </div>
+
+          {/* DESCRIPTION */}
+          <div
+            style={{
+              lineHeight: "1.8",
+              fontSize: "17px",
+              color: "#555",
+
+              marginBottom: "30px",
+            }}
+          >
+            {product.description}
+          </div>
+
+          {/* QUANTITY */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "15px",
+
+              marginBottom: "30px",
+            }}
+          >
+            <button
+              onClick={() => quantity > 1 && setQuantity(quantity - 1)}
+              style={{
+                width: "40px",
+                height: "40px",
+
+                border: "none",
+                borderRadius: "10px",
+
+                background: "#eee",
+                cursor: "pointer",
+
+                fontSize: "20px",
+              }}
+            >
+              -
+            </button>
+
+            <span
+              style={{
+                fontSize: "22px",
+                fontWeight: "bold",
+              }}
+            >
+              {quantity}
+            </span>
+
+            <button
+              onClick={() => setQuantity(quantity + 1)}
+              style={{
+                width: "40px",
+                height: "40px",
+
+                border: "none",
+                borderRadius: "10px",
+
+                background: "#eee",
+                cursor: "pointer",
+
+                fontSize: "20px",
+              }}
+            >
+              +
+            </button>
+          </div>
+
+          {/* BUTTON */}
+          <button
+            onClick={handleAddToCart}
+            style={{
+              background: "#56B6C6",
+
+              color: "white",
+
+              border: "none",
+
+              padding: "16px",
+
+              borderRadius: "14px",
+
+              fontSize: "18px",
+              fontWeight: "bold",
+
+              cursor: "pointer",
+
+              transition: "0.3s",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.opacity = "0.85";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.opacity = "1";
+            }}
+          >
+            Thêm vào giỏ hàng
+          </button>
+        </div>
       </div>
     </div>
   );
