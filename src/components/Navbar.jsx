@@ -11,7 +11,10 @@ function Navbar() {
       }}
     >
       <NavLink to="/" style={{ textDecoration: "none" }}>
-        <h3 style={{ color: "white", margin: 0 }}>🍰 DeliciaCake</h3>
+        <h3 style={{ color: "white", margin: 0 }}>🍰 DeliciaGarden</h3>
+      </NavLink>
+      <NavLink to="/menu" style={{ textDecoration: "none" }}>
+        <h5 style={{ color: "white", margin: 0, paddingTop: "7px" }}>Menu</h5>
       </NavLink>
     </div>
   );

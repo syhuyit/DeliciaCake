@@ -44,6 +44,123 @@
       "size": "8 inch - 21 cm",
       "price": 380000,
       "image": "/images/kem-mat-ngot.png"
+    },
+    {
+      "id": 6,
+      "name": "Bánh kem biển ngọc",
+      "category": "Bánh kem",
+      "description": "Cốt chiffon phô mai mềm mịn kết hợp lớp trân châu trắng dẻo dai và mứt vải nha đam thanh mát. Hương vị trái cây nhẹ nhàng hòa cùng lớp kem béo dịu tạo nên tổng thể tươi mát và hài hòa. Bánh phủ kem xanh pastel, trang trí socola trắng tạo hình thủy cung lấp lánh như đại dương thu nhỏ. Vị bánh: Thanh mát, béo nhẹ, ngọt dịu.",
+      "size": "6 inch - 16 cm",
+      "price": 350000,
+      "image": "/images/kem-bien-ngoc.png"
+    },
+    {
+      "id": 7,
+      "name": "Bánh kem hoa viên",
+      "category": "Bánh kem",
+      "description": "Cốt chiffon sô cô la đậm vị kết hợp lớp nhân mứt dưa lưới đào ngọt thơm và trân châu giòn nhẹ. Vị cacao quyện cùng vị trái cây tươi tạo nên sự cân bằng hài hòa giữa ngọt và béo. Bánh trang trí hoa nhẹ nhàng, lãng mạn. Vị bánh: Đậm vị sô cô la, thơm trái cây, ngọt vừa.",
+      "size": "8 inch - 21 cm",
+      "price": 380000,
+      "image": "/images/kem-hoa-vien.png"
+    },
+    {
+      "id": 8,
+      "name": "Bánh mousse Hawaii",
+      "category": "Bánh kem",
+      "description": "Mousse dừa bùi thơm, mịn tan trong miệng kết hợp cùng chiffon caramel đậm vị đặc trưng. Mặt bánh phủ jelly caramel núng nính, trang trí sô cô la ngọt vị nguyên bản. Vị bánh: ngọt thanh, thơm hương caramel, mát bùi vị dừa.",
+      "size": "8 inch - 21 cm",
+      "price": 450000,
+      "image": "/images/mousse-hawaii.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Bánh mousse quả mọng",
+      "category": "Bánh kem",
+      "description": "Cốt chiffon phô mai mềm ẩm kết hợp lớp mousse trái mọng chua ngọt đặc trưng từ các loại berry chín mọng. Hương vị trái cây tươi hòa cùng vị béo nhẹ của phô mai mang lại cảm giác thanh mát và tinh tế. Mặt bánh trang trí sốt berry ánh đỏ nổi bật. Vị bánh: Chua ngọt dịu, thơm trái mọng.",
+      "size": "8 inch - 21 cm",
+      "price": 450000,
+      "image": "/images/mousse-qua-mong.png"
+    },
+    {
+      "id": 10,
+      "name": "Bánh kem Chocco ngọc trai",
+      "category": "Bánh kem",
+      "description": "Cốt chiffon phô mai mềm mịn kết hợp lớp trân châu trắng dẻo dai và mứt vải nha đam thanh mát. Vị phô mai béo nhẹ hòa cùng vị trái cây dịu ngọt tạo nên tổng thể hài hòa và dễ thưởng thức. Mặt bánh phủ kem mịn, trang trí socola cùng bi vàng bạc lấp lánh nổi bật. Vị bánh: Béo nhẹ, thơm phô mai, ngọt thanh.",
+      "size": "6 inch - 16 cm",
+      "price": 350000,
+      "image": "/images/kem-chocco-ngoc-trai.png"
+    },
+    {
+      "id": 11,
+      "name": "Bánh kem Bông tuyết",
+      "category": "Bánh kem",
+      "description": "Bánh kem Bông tuyết mang lớp cốt chiffon đậm vị sô cô la, mềm ẩm và thơm nồng đầy cuốn hút. Xen giữa các lớp bánh là nhân trân châu giòn vui miệng kết hợp cùng mứt dưa lưới đào, tạo nên sự cân bằng hài hòa giữa vị ngọt và chút thanh tươi của trái cây. Tổng thể chiếc bánh gợi cảm giác ngọt ngào, nổi bật nhưng vẫn dễ thưởng thức, như một lớp “hoa tuyết” dịu dàng phủ lên vị giác. Vị bánh: Đậm vị sô cô la, ngọt dịu vị dưa lưới đào và độ giòn thú vị từ trân châu.",
+      "size": "4 inch - 11 cm",
+      "price": 160000,
+      "image": "/images/kem-bong-tuyet.png"
+    },
+    {
+      "id": 12,
+      "name": "Bánh kem Chocco trân châu",
+      "category": "Bánh kem",
+      "description": "Cốt chiffon sô cô la mềm ẩm, đậm vị cacao, kết hợp lớp trân châu giòn dai và mứt dưa lưới đào thơm ngọt. Sự hòa quyện giữa vị sô cô la đậm đà và trái cây tươi mát mang đến tổng thể hương vị hài hòa, dễ thưởng thức. Mặt bánh phủ kem sô cô la mịn, trang trí socola uốn nghệ thuật sang trọng. Vị bánh: Đậm vị cacao, ngọt vừa.",
+      "size": "6 inch - 16 cm",
+      "price": 350000,
+      "image": "/images/kem-chocco-tran-chau.png"
+    },
+    {
+      "id": 13,
+      "name": "Bánh macaron",
+      "category": "Bánh ngọt",
+      "description": "Sự kết hợp tinh tế của những chiếc bánh nhỏ xinh với lớp vỏ giòn nhẹ, nhân kem ngọt ngào. Đa dạng hương vị, màu sắc bắt mắt, mỗi chiếc macaron là một trải nghiệm ngọt ngào, thích hợp làm quà tặng hoặc thưởng thức cùng trà chiều sang trọng. Thành phần: Bột hạnh nhân, đường, lòng trắng trứng, sô cô la, sữa tươi, cam vàng, chanh vàng, chanh leo, mứt mơ, mứt dâu, trà bá tước, trà xanh, mè đen, gelatin, quả vani, hương bạc hà, màu thực phẩm.",
+      "size": "90g",
+      "price": 99000,
+      "image": "/images/macaron.png"
+    },
+    {
+      "id": 14,
+      "name": "Bánh chuối hạt",
+      "category": "Bánh ngọt",
+      "description": "Bánh chuối hạt óc chó xốp mềm thơm ngon với vị ngọt thanh tự nhiên của của chuối kết hợp cùng hạt óc chó thơm lừng, beo béo, bùi bùi, vui miệng. Thành phần: Chuối tiêu (25%), bột mì hảo hạng, đường kính, bơ thực vật, trứng gà, hạt óc chó (2,5%), bột nở làm bánh ibis, mứt mơ.",
+      "size": "280g",
+      "price": 69000,
+      "image": "/images/chuoi-hat.png"
+    },
+    {
+      "id": 15,
+      "name": "Bánh quy bơ mứt dâu",
+      "category": "Bánh khô",
+      "description": "Bánh quy bơ giòn xốp, thơm lừng, kết hợp cùng mứt dâu đỏ au ngọt dịu, tạo điểm nhấn bắt mắt và hương vị hài hòa. Một chiếc bánh nhỏ xinh nhưng đầy cuốn hút từ hình thức đến vị giác. Thành phần: Bột mì, bơ (30,6%), đường, trứng, mứt dâu (5.1%).",
+      "size": "80g",
+      "price": 45000,
+      "image": "/images/quy-bo-mut-dau.jpeg"
+    },
+    {
+      "id": 16,
+      "name": "Bánh sandwich phô mai",
+      "category": "Bánh mặn",
+      "description": "Bánh quy bơ giòn xốp, thơm lừng, kết hợp cùng mứt dâu đỏ au ngọt dịu, tạo điểm nhấn bắt mắt và hương vị hài hòa. Một chiếc bánh nhỏ xinh nhưng đầy cuốn hút từ hình thức đến vị giác. Thành phần: Bột mì, bơ (30,6%), đường, trứng, mứt dâu (5.1%).",
+      "size": "130g",
+      "price": 49000,
+      "image": "/images/sandwich-bo-pho-mai.png"
+    },
+    {
+      "id": 17,
+      "name": "Bánh sừng bò mini",
+      "category": "Bánh khô",
+      "description": "Những chiếc bánh tạo hình chiếc sừng bò nhỏ xinh, phủ vừng trắng bắt mắt, giòn xốp bên ngoài, mềm mại bên trong. Hương vị ngọt nhẹ, béo bùi, thơm lừng bơ sữa, mang đến trải nghiệm tinh tế trong từng miếng cắn.",
+      "size": "240g",
+      "price": 45000,
+      "image": "/images/sung-bo-mini.png"
+    }
+  ],
+
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "123456",
+      "role": "admin"
     }
   ]
 }

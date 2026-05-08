@@ -19,7 +19,7 @@ function Home() {
           fontWeight: "bold",
         }}
       >
-        🍰 Cake Shop
+        🍰 Delicia Garden
       </div>
 
       {/* Slogan */}

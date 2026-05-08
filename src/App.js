@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Checkout from "./pages/Checkout";
 import Orders from "./pages/Orders";
 import ProductDetail from "./pages/ProductDetail";
@@ -15,6 +16,9 @@ function App() {
       <Navbar />
 
       <Routes>
+        <Route path="/login" element={<Login />} />
+
+        <Route path="/register" element={<Register />} />
         <Route path="/" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/login" element={<Login />} />
