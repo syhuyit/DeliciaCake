@@ -65,6 +65,19 @@ function CartProvider({ children }) {
     setCart([]);
   };
 
+  // =========================
+  // UPDATE QUANTITY
+  // =========================
+  const updateQuantity = (id, quantity) => {
+    if (quantity <= 0) {
+      removeFromCart(id);
+      return;
+    }
+    setCart(cart.map((item) =>
+      item.id === id ? { ...item, quantity } : item
+    ));
+  };
+
   const getTotal = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   };
@@ -77,6 +90,7 @@ function CartProvider({ children }) {
         removeFromCart,
         clearCart,
         getTotal,
+        updateQuantity,
       }}
     >
       {children}

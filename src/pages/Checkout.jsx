@@ -34,7 +34,7 @@ function Checkout() {
 
     clearCart();
 
-    alert("Thanh toán thành công!");
+    navigate("/orders");
   };
 
   const { cart, clearCart } = useContext(CartContext);

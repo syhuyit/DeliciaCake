@@ -304,7 +304,8 @@ function Menu() {
           style={{
             display: "flex",
             justifyContent: "center",
-            gap: "10px",
+            alignItems: "center",
+            gap: "16px",
             marginTop: "30px",
           }}
         >
@@ -312,34 +313,70 @@ function Menu() {
           <button
             disabled={currentPage === 1}
             onClick={() => setCurrentPage(currentPage - 1)}
+            style={{
+              width: "42px",
+              height: "42px",
+              border: "none",
+              borderRadius: "12px",
+              background: currentPage === 1 ? "#e8e8e8" : "#56B6C6",
+              color: currentPage === 1 ? "#aaa" : "white",
+              fontSize: "18px",
+              cursor: currentPage === 1 ? "not-allowed" : "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              transition: "0.2s",
+              boxShadow:
+                currentPage === 1 ? "none" : "0 3px 8px rgba(86,182,198,0.35)",
+            }}
           >
             ←
           </button>
 
-          {/* Number */}
-          {[...Array(totalPages)].map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentPage(index + 1)}
-              style={{
-                background: currentPage === index + 1 ? "#56B6C6" : "#f0f0f0",
-
-                color: currentPage === index + 1 ? "white" : "black",
-
-                border: "none",
-                padding: "8px 14px",
-                borderRadius: "8px",
-                cursor: "pointer",
-              }}
-            >
-              {index + 1}
-            </button>
-          ))}
+          {/* Page Info */}
+          <span
+            style={{
+              background: "white",
+              padding: "10px 22px",
+              borderRadius: "12px",
+              fontWeight: "600",
+              fontSize: "15px",
+              color: "#333",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+              letterSpacing: "0.5px",
+            }}
+          >
+            Trang{" "}
+            <span style={{ color: "#56B6C6", fontSize: "17px" }}>
+              {currentPage}
+            </span>{" "}
+            / {totalPages}
+          </span>
 
           {/* Next */}
           <button
             disabled={currentPage === totalPages}
             onClick={() => setCurrentPage(currentPage + 1)}
+            style={{
+              width: "42px",
+              height: "42px",
+              border: "none",
+              borderRadius: "12px",
+              background:
+                currentPage === totalPages ? "#e8e8e8" : "#56B6C6",
+              color: currentPage === totalPages ? "#aaa" : "white",
+              fontSize: "18px",
+              cursor:
+                currentPage === totalPages ? "not-allowed" : "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              transition: "0.2s",
+              boxShadow:
+                currentPage === totalPages
+                  ? "none"
+                  : "0 3px 8px rgba(86,182,198,0.35)",
+            }}
           >
             →
           </button>

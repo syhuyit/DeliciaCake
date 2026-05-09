@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 
-import { getProducts } from "../services/productService";
+import { getProductById } from "../services/productService";
 import { CartContext } from "../context/CartContext";
 
 function ProductDetail() {
@@ -30,15 +30,7 @@ function ProductDetail() {
   }, [id]);
 
   const fetchProduct = async () => {
-    const data = await getProducts();
-
-    console.log("URL ID:", id);
-    console.log("DATA:", data);
-
-    // FIX TYPE STRING/NUMBER
-    const foundProduct = data.find((item) => String(item.id) === String(id));
-
-    console.log("FOUND:", foundProduct);
+    const foundProduct = await getProductById(id);
 
     setProduct(foundProduct);
   };
@@ -66,8 +58,6 @@ function ProductDetail() {
   // ===============================
   const handleAddToCart = () => {
     addToCart(product, quantity);
-
-    alert(`Đã thêm ${quantity} sản phẩm vào giỏ hàng`);
   };
 
   return (

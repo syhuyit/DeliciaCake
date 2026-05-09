@@ -1,7 +1,29 @@
-import axios from "axios";
+import API from "./api";
 
-const API_URL = "http://localhost:9999/products";
 export const getProducts = async () => {
-  const response = await axios.get(API_URL);
-  return response.data;
+  const res = await API.get("/products");
+  return res.data;
+};
+
+export const getProductById = async (id) => {
+  const res = await API.get(`/products/${id}`);
+  return res.data;
+};
+
+// ADD PRODUCT
+export const addProduct = async (data) => {
+  const res = await API.post("/products", data);
+  return res.data;
+};
+
+// UPDATE PRODUCT
+export const updateProduct = async (id, data) => {
+  const res = await API.put(`/products/${id}`, data);
+  return res.data;
+};
+
+// DELETE PRODUCT
+export const deleteProduct = async (id) => {
+  const res = await API.delete(`/products/${id}`);
+  return res.data;
 };

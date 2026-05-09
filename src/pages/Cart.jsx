@@ -6,7 +6,7 @@ function Cart() {
   // =========================
   // CONTEXT
   // =========================
-  const { cart, removeFromCart, clearCart, getTotal } = useContext(CartContext);
+  const { cart, removeFromCart, clearCart, getTotal, updateQuantity } = useContext(CartContext);
 
   const navigate = useNavigate();
 
@@ -107,15 +107,61 @@ function Cart() {
               </p>
 
               {/* QUANTITY */}
-              <p
+              <div
                 style={{
-                  margin: 0,
-                  fontSize: "14px",
-                  color: "#666",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  marginTop: "5px",
                 }}
               >
-                Số lượng: {item.quantity}
-              </p>
+                <button
+                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                  style={{
+                    width: "28px",
+                    height: "28px",
+                    border: "none",
+                    borderRadius: "6px",
+                    background: "#eee",
+                    cursor: "pointer",
+                    fontSize: "16px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  -
+                </button>
+
+                <span
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "bold",
+                    minWidth: "20px",
+                    textAlign: "center",
+                  }}
+                >
+                  {item.quantity}
+                </span>
+
+                <button
+                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                  style={{
+                    width: "28px",
+                    height: "28px",
+                    border: "none",
+                    borderRadius: "6px",
+                    background: "#eee",
+                    cursor: "pointer",
+                    fontSize: "16px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  +
+                </button>
+              </div>
             </div>
           </div>
 

@@ -33,42 +33,20 @@ function Home() {
         <h2>Ngọt ngào mỗi ngày</h2>
         <p>Thưởng thức những chiếc bánh ngon nhất tại cửa hàng của chúng tôi</p>
 
-        <div
+        <button
+          onClick={() => navigate("/menu")}
           style={{
-            display: "flex",
-            gap: "15px",
-            justifyContent: "center",
+            background: "#56B6C6",
+            color: "white",
+            border: "none",
+            padding: "10px 20px",
+            borderRadius: "10px",
+            cursor: "pointer",
             marginTop: "10px",
           }}
         >
-          <button
-            onClick={() => navigate("/menu")}
-            style={{
-              background: "#56B6C6",
-              color: "white",
-              border: "none",
-              padding: "10px 20px",
-              borderRadius: "10px",
-              cursor: "pointer",
-            }}
-          >
-            Mua ngay
-          </button>
-
-          <button
-            onClick={() => navigate("/customcake")}
-            style={{
-              background: "#56B6C6",
-              color: "white",
-              border: "none",
-              padding: "10px 20px",
-              borderRadius: "10px",
-              cursor: "pointer",
-            }}
-          >
-            Đặt bánh ngay
-          </button>
-        </div>
+          Mua ngay
+        </button>
       </div>
 
       {/* Giới thiệu */}

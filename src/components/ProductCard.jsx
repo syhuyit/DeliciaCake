@@ -22,28 +22,10 @@ function ProductCard({ product }) {
   // =========================
   const handleAddToCart = () => {
     addToCart(product);
-
-    alert("Đã thêm vào giỏ hàng");
   };
 
   return (
-    <div
-      className="product-card"
-      style={{
-        background: "white",
-
-        borderRadius: "16px",
-
-        padding: "15px",
-
-        boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
-
-        display: "flex",
-        flexDirection: "column",
-
-        height: "100%",
-      }}
-    >
+    <div className="product-card">
       {/* ========================= */}
       {/* IMAGE */}
       {/* ========================= */}
@@ -52,18 +34,6 @@ function ProductCard({ product }) {
         src={product.image}
         alt={product.name}
         onClick={() => navigate(`/product/${product.id}`)}
-        style={{
-          width: "100%",
-          height: "180px",
-
-          objectFit: "cover",
-
-          borderRadius: "12px",
-
-          marginBottom: "15px",
-
-          cursor: "pointer",
-        }}
       />
 
       {/* ========================= */}
@@ -113,26 +83,7 @@ function ProductCard({ product }) {
       {/* ========================= */}
       <button
         onClick={handleAddToCart}
-        className="product-btn"
-        style={{
-          marginTop: "auto",
-
-          background: "#56B6C6",
-
-          color: "white",
-
-          border: "none",
-
-          padding: "12px",
-
-          borderRadius: "10px",
-
-          cursor: "pointer",
-
-          fontWeight: "500",
-
-          transition: "0.3s",
-        }}
+        className="add-btn"
       >
         Thêm ngay
       </button>
