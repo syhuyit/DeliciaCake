@@ -163,7 +163,7 @@ function Menu() {
               cursor: "pointer",
               fontWeight: "500",
 
-              background: category === item ? "#56B6C6" : "#f3f3f3",
+              background: category === item ? "#5263c3" : "#f3f3f3",
 
               color: category === item ? "white" : "#333",
 
@@ -362,12 +362,10 @@ function Menu() {
               height: "42px",
               border: "none",
               borderRadius: "12px",
-              background:
-                currentPage === totalPages ? "#e8e8e8" : "#56B6C6",
+              background: currentPage === totalPages ? "#e8e8e8" : "#56B6C6",
               color: currentPage === totalPages ? "#aaa" : "white",
               fontSize: "18px",
-              cursor:
-                currentPage === totalPages ? "not-allowed" : "pointer",
+              cursor: currentPage === totalPages ? "not-allowed" : "pointer",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",

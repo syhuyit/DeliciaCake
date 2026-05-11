@@ -14,6 +14,7 @@ import Checkout from "./pages/Checkout";
 import Orders from "./pages/Orders";
 import ProductDetail from "./pages/ProductDetail";
 import Admin from "./pages/Admin";
+import AddProduct from "./pages/AddProduct";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
 
@@ -94,6 +95,13 @@ function AppContent() {
               <Admin />
             </ProtectedRoute>
           }
+        />
+
+        <Route path="/add" element={
+          <ProtectedRoute>
+            <AddProduct />
+          </ProtectedRoute>
+        }
         />
       </Routes>
     </>
