@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import {
   Button,
   Form,
@@ -9,9 +9,10 @@ import {
   Col,
   Stack,
 } from "react-bootstrap";
-import { addProduct } from "../services/productService";
+import { updateProduct, getProductById } from "../services/productService";
 
-function AddProduct() {
+function UpdateProduct() {
+  const { id } = useParams();
   const [product, setProduct] = useState({
     name: "",
     category: "",
@@ -23,6 +24,15 @@ function AddProduct() {
 
   const navigate = useNavigate();
 
+  const loadPBI = async () => {
+    const res = await getProductById(id);
+    setProduct(res);
+  };
+
+  useEffect(() => {
+    loadPBI();
+  }, [id]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProduct({
@@ -31,15 +41,15 @@ function AddProduct() {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      await addProduct(product);
+      await updateProduct(id, product);
       navigate("/admin");
-      window.alert("Thêm sản phẩm thành công!");
+      window.alert("Cập nhật thành công!");
     } catch (error) {
       console.log(error);
-      window.alert("Thêm sản phẩm thất bại!");
+      window.alert("Cập nhật thất bại!");
     }
   };
 
@@ -66,7 +76,7 @@ function AddProduct() {
     input: {
       backgroundColor: "#0f111a",
       border: "1px solid #2d3748",
-      color: "#fff",
+      color: "#ffffff",
       borderRadius: "10px",
       padding: "12px",
     },
@@ -74,41 +84,46 @@ function AddProduct() {
       width: "100%",
       height: "200px",
       borderRadius: "12px",
-      border: "2px dashed #2d3748",
+      border: "2px solid #2d3748",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       overflow: "hidden",
-      backgroundColor: "#0a0a0c",
-      color: "#4a5568",
+      backgroundColor: "#000",
     },
   };
 
   return (
     <div style={styles.wrapper}>
       <Container style={{ maxWidth: "800px" }}>
-        {/* Header & Back Button */}
         <Stack direction="horizontal" className="mb-4">
           <div>
-            <h2 className="fw-bold mb-1">Thêm sản phẩm mới</h2>
+            <h2 className="fw-bold mb-1" style={{ color: "#fff" }}>
+              Chỉnh sửa sản phẩm
+            </h2>
             <p style={{ color: "#a0aec0", margin: 0 }}>
-              Điền thông tin để cập nhật kho hàng
+              Đang chỉnh sửa sản phẩm ID:{" "}
+              <span style={{ color: "#f59e0b" }}>#{id}</span>
             </p>
           </div>
-          <Link to="/admin" className="ms-auto text-decoration-none">
+          <Link to="/admin" className="ms-auto">
             <Button
               variant="outline-secondary"
-              style={{ borderRadius: "10px", color: "#a0aec0" }}
+              style={{
+                borderRadius: "10px",
+                color: "#a0aec0",
+                borderColor: "#2d3748",
+              }}
             >
-              ← Quay lại
+              ← Huỷ bỏ
             </Button>
           </Link>
         </Stack>
 
         <Card style={styles.card}>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleUpdate}>
             <Row>
-              {/* Cột trái: Thông tin cơ bản */}
+              {/* Cột trái: Thông tin chính */}
               <Col md={7}>
                 <Form.Group className="mb-3">
                   <Form.Label style={styles.label}>Tên sản phẩm</Form.Label>
@@ -119,7 +134,6 @@ function AddProduct() {
                     name="name"
                     value={product.name}
                     onChange={handleChange}
-                    placeholder="Ví dụ: Trà sữa chân châu..."
                   />
                 </Form.Group>
 
@@ -134,15 +148,12 @@ function AddProduct() {
                         name="category"
                         value={product.category}
                         onChange={handleChange}
-                        placeholder="Loại trà..."
                       />
                     </Form.Group>
                   </Col>
                   <Col md={6}>
                     <Form.Group className="mb-3">
-                      <Form.Label style={styles.label}>
-                        Kích thước (Size)
-                      </Form.Label>
+                      <Form.Label style={styles.label}>Kích thước</Form.Label>
                       <Form.Control
                         required
                         style={styles.input}
@@ -150,7 +161,6 @@ function AddProduct() {
                         name="size"
                         value={product.size}
                         onChange={handleChange}
-                        placeholder="M, L, XL..."
                       />
                     </Form.Group>
                   </Col>
@@ -165,17 +175,14 @@ function AddProduct() {
                     name="price"
                     value={product.price}
                     onChange={handleChange}
-                    placeholder="0.00"
                   />
                 </Form.Group>
               </Col>
 
-              {/* Cột phải: Hình ảnh & Preview */}
+              {/* Cột phải: Ảnh */}
               <Col md={5}>
                 <Form.Group className="mb-3">
-                  <Form.Label style={styles.label}>
-                    Đường dẫn ảnh (URL)
-                  </Form.Label>
+                  <Form.Label style={styles.label}>Đường dẫn ảnh</Form.Label>
                   <Form.Control
                     required
                     style={styles.input}
@@ -183,13 +190,10 @@ function AddProduct() {
                     name="image"
                     value={product.image}
                     onChange={handleChange}
-                    placeholder="https://..."
                   />
                 </Form.Group>
 
-                <div className="mb-2" style={styles.label}>
-                  Xem trước hình ảnh:
-                </div>
+                <div style={styles.label}>Hình ảnh hiện tại:</div>
                 <div style={styles.imagePreview}>
                   {product.image ? (
                     <img
@@ -202,7 +206,7 @@ function AddProduct() {
                       }}
                     />
                   ) : (
-                    <span>Chưa có ảnh</span>
+                    <span style={{ color: "#4a5568" }}>Không tìm thấy ảnh</span>
                   )}
                 </div>
               </Col>
@@ -212,31 +216,28 @@ function AddProduct() {
               <Form.Label style={styles.label}>Mô tả chi tiết</Form.Label>
               <Form.Control
                 as="textarea"
-                rows={3}
+                rows={4}
                 required
                 style={styles.input}
                 name="description"
                 value={product.description}
                 onChange={handleChange}
-                placeholder="Nhập mô tả sản phẩm tại đây..."
               />
             </Form.Group>
 
-            <hr style={{ borderColor: "#2d3748", margin: "25px 0" }} />
-
-            <div className="d-grid">
+            <div className="d-grid pt-3">
               <Button
                 type="submit"
-                size="lg"
                 style={{
-                  backgroundColor: "#3b82f6",
+                  backgroundColor: "#f59e0b",
                   border: "none",
                   borderRadius: "12px",
                   fontWeight: "bold",
-                  padding: "15px",
+                  padding: "12px",
+                  color: "#000",
                 }}
               >
-                Xác nhận thêm sản phẩm
+                Lưu thay đổi sản phẩm
               </Button>
             </div>
           </Form>
@@ -246,4 +247,4 @@ function AddProduct() {
   );
 }
 
-export default AddProduct;
+export default UpdateProduct;

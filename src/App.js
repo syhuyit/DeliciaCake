@@ -19,6 +19,7 @@ import AddProduct from "./pages/AddProduct";
 import ProtectedRoute from "./routes/ProtectedRoute";
 
 import { AuthContext } from "./context/AuthContext";
+import UpdateProduct from "./pages/UpdateProduct";
 
 function AppContent() {
   const location = useLocation();
@@ -97,11 +98,21 @@ function AppContent() {
           }
         />
 
-        <Route path="/add" element={
-          <ProtectedRoute>
-            <AddProduct />
-          </ProtectedRoute>
-        }
+        <Route
+          path="/add"
+          element={
+            <ProtectedRoute>
+              <AddProduct />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/update/:id"
+          element={
+            <ProtectedRoute>
+              <UpdateProduct />
+            </ProtectedRoute>
+          }
         />
       </Routes>
     </>
