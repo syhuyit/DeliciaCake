@@ -119,7 +119,7 @@ function AddProduct() {
                     name="name"
                     value={product.name}
                     onChange={handleChange}
-                    placeholder="Ví dụ: Trà sữa chân châu..."
+                    placeholder="Ví dụ: Bánh xu kem..."
                   />
                 </Form.Group>
 
@@ -134,7 +134,7 @@ function AddProduct() {
                         name="category"
                         value={product.category}
                         onChange={handleChange}
-                        placeholder="Loại trà..."
+                        placeholder="Loại bánh..."
                       />
                     </Form.Group>
                   </Col>
@@ -150,7 +150,7 @@ function AddProduct() {
                         name="size"
                         value={product.size}
                         onChange={handleChange}
-                        placeholder="M, L, XL..."
+                        placeholder="cm/inch..."
                       />
                     </Form.Group>
                   </Col>
