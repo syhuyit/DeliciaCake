@@ -177,5 +177,87 @@
       "role": "user"
     }
   ],
+  "orders": [
+    {
+      "id": 1,
+      "userId": 2,
+      "customerName": "Huy",
+      "phone": "0123456789",
+      "address": "Hà Nội",
+      "total": 168000,
+      "date": "2026-05-12T10:00:00.000Z",
+      "items": [
+        {
+          "productId": 13,
+          "name": "Bánh macaron",
+          "price": 99000,
+          "quantity": 1
+        },
+        {
+          "productId": 14,
+          "name": "Bánh chuối hạt",
+          "price": 69000,
+          "quantity": 1
+        }
+      ],
+      "status": "pending"
+    },
+    {
+      "userId": 2,
+      "address": "11- nguyễn văn lộc",
+      "name": "tiên",
+      "phone": "0931381212",
+      "bank": "Vietcombank",
+      "cart": [
+        {
+          "id": "4",
+          "name": "Bánh dừa phô mai sâu đậm",
+          "category": "Bánh ngọt",
+          "description": "Bánh phô mai dừa sâu đậm là cái bắt tay rất ăn ý giữa nhân phô mai kem béo mịn và hương dừa thơm dịu, thêm chút mật ong để tổng thể ngọt ngào theo cách cực duyên dáng. Mềm, thơm, ngậy vừa phải và không hề ngấy, đây là kiểu bánh dành cho team mê vị phô mai beo béo nhưng vẫn thích cảm giác nhẹ dịu, tinh tế như mây. Thành phần: Bột mỳ, bơ, trứng gà, đường, sốt phô mai, sốt cơm dừa, dầu ăn, sữa bột, bột nở làm bánh, men, muối, nước.",
+          "size": "4 cm",
+          "price": 25000,
+          "image": "/images/dua-pho-mai.png",
+          "quantity": 1
+        },
+        {
+          "id": 3,
+          "name": "Bánh mousse chanh leo",
+          "category": "Bánh kem",
+          "description": "Mousse chanh leo mượt mà trên cốt bánh chiffon phô mai mềm ẩm, phủ tráng gương pha xốt chanh leo dẻo thơm. Vị bánh: ngọt thanh, chua dịu thoảng vị kem sữa ngậy béo, thơm hương chanh leo tươi.",
+          "size": "8 inch - 21 cm",
+          "price": 450000,
+          "image": "/images/mousse-chanh-leo.png",
+          "quantity": 1
+        }
+      ],
+      "total": 475000,
+      "date": "2026-05-12T03:31:17.987Z",
+      "status": "pending",
+      "id": 2
+    },
+    {
+      "userId": 2,
+      "address": "11- nguyễn văn lộc",
+      "name": "Tiên",
+      "phone": "0119192291",
+      "bank": "Vietcombank",
+      "cart": [
+        {
+          "id": 3,
+          "name": "Bánh mousse chanh leo",
+          "category": "Bánh kem",
+          "description": "Mousse chanh leo mượt mà trên cốt bánh chiffon phô mai mềm ẩm, phủ tráng gương pha xốt chanh leo dẻo thơm. Vị bánh: ngọt thanh, chua dịu thoảng vị kem sữa ngậy béo, thơm hương chanh leo tươi.",
+          "size": "8 inch - 21 cm",
+          "price": 450000,
+          "image": "/images/mousse-chanh-leo.png",
+          "quantity": 1
+        }
+      ],
+      "total": 450000,
+      "date": "2026-05-12T03:33:35.243Z",
+      "status": "pending",
+      "id": 3
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

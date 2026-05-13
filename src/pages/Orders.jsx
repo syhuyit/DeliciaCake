@@ -1,5 +1,25 @@
+import { useEffect, useState, useContext } from "react";
+import { getOrdersByUserId } from "../services/orderService";
+import { AuthContext } from "../context/AuthContext";
+
 function Orders() {
-  const orders = JSON.parse(localStorage.getItem("orders")) || [];
+  const [orders, setOrders] = useState([]);
+  const { user } = useContext(AuthContext); // Lấy user hiện tại
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      if (user?.id) {
+        try {
+          const data = await getOrdersByUserId(user.id);
+          setOrders(data);
+        } catch (error) {
+          console.error("Lỗi khi tải đơn hàng", error);
+        }
+      }
+    };
+    
+    fetchOrders();
+  }, [user]);
 
   return (
     <div style={{ padding: "20px" }}>

@@ -1,45 +1,49 @@
 import { Dropdown } from "react-bootstrap";
-import { useState } from "react";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { createOrder } from "../services/orderService";
 
 function Checkout() {
   const navigate = useNavigate();
-  const [district, setDistrict] = useState("");
   const [address, setAddress] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [bank, setBank] = useState("");
 
-  const handleCheckout = () => {
-    if (!district || !address || !name || !phone || !bank) {
+  const { cart, clearCart } = useContext(CartContext);
+  const { user } = useContext(AuthContext);
+
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  const handleCheckout = async () => {
+    if (!address || !name || !phone || !bank) {
       alert("Vui lòng điền đầy đủ thông tin!");
       return;
     }
 
     const order = {
-      id: Date.now(),
-      district,
+      userId: user?.id,
       address,
       name,
       phone,
       bank,
       cart,
       total,
+      date: new Date().toISOString(),
+      status: "pending"
     };
 
-    const oldOrders = JSON.parse(localStorage.getItem("orders")) || [];
-    localStorage.setItem("orders", JSON.stringify([...oldOrders, order]));
-
-    clearCart();
-
-    navigate("/orders");
+    try {
+      await createOrder(order);
+      clearCart();
+      navigate("/orders");
+    } catch (error) {
+      console.error(error);
+      alert("Thanh toán thất bại!");
+    }
   };
-
-  const { cart, clearCart } = useContext(CartContext);
-
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
     <div
@@ -56,23 +60,6 @@ function Checkout() {
       <h2>Thanh toán</h2>
 
       <h4>Thông tin nhận hàng</h4>
-
-      <Dropdown>
-        <Dropdown.Toggle variant="success">
-          {district || "Chọn quận"}
-        </Dropdown.Toggle>
-        <Dropdown.Menu>
-          <Dropdown.Item onClick={() => setDistrict("Hà Đông")}>
-            Hà Đông
-          </Dropdown.Item>
-          <Dropdown.Item onClick={() => setDistrict("Thanh Xuân")}>
-            Thanh Xuân
-          </Dropdown.Item>
-          <Dropdown.Item onClick={() => setDistrict("Hai Bà Trưng")}>
-            Hai Bà Trưng
-          </Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
 
       <input
         placeholder="Địa chỉ chi tiết"

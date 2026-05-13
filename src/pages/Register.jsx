@@ -61,7 +61,6 @@ function Register() {
           boxShadow: "0 5px 20px rgba(0,0,0,0.1)",
         }}
       >
-        {/* TITLE */}
         <h2
           style={{
             textAlign: "center",
@@ -83,7 +82,6 @@ function Register() {
           Tạo tài khoản mới để bắt đầu mua sắm
         </p>
 
-        {/* INPUT */}
         <input
           type="text"
           placeholder="Tên đăng nhập"
@@ -126,7 +124,6 @@ function Register() {
           }}
         />
 
-        {/* BUTTON */}
         <button
           onClick={handleRegister}
           style={{
@@ -144,7 +141,6 @@ function Register() {
           Đăng ký
         </button>
 
-        {/* LOGIN LINK */}
         <p
           style={{
             marginTop: "15px",
