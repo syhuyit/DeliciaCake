@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# Delicia Garden - He Thong Quan Ly va Kinh Doanh Banh Ngot
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Delicia Garden la mot ung dung Web thuong mai dien tu hoan chinh duoc xay dung tren nen tang ReactJS. Du an tap trung vao viec toi uu hoa trai nghiem nguoi dung (UX) va kha nang quan ly du lieu linh hoat thong qua he thong RESTful API.
 
-## Available Scripts
+Link trai nghiem thuc te (Live Demo): https://delicia-garden.vercel.app
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Tinh nang chinh
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Phan he Khach hang
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Browsing: Xem danh muc san pham da dang voi giao dien chuan Responsive.
+- Smart Cart: Quan ly gio hang thong minh (Them/Sua/Xoa) tich hop tinh toan tong tien thoi gian thuc.
+- Order Flow: Quy trinh dat hang (Checkout) va luu tru thong tin giao nhan.
+- Security: He thong Dang ky/Dang nhap de quan ly thong tin ca nhan.
 
-### `npm test`
+### Phan he Quan tri (Admin)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Full CRUD: Toan quyen Them moi, Cap nhat thong tin va Xoa san pham khoi he thong.
+- Dashboard: Theo doi danh sach don hang va trang thai kho hang thong qua giao dien quan tri rieng biet.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Cong nghe su dung (Tech Stack)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+| Thanh phan       | Cong nghe                                 |
+| :--------------- | :---------------------------------------- |
+| Frontend         | ReactJS, React Router DOM Axios           |
+| UI Framework     | React Bootstrap, CSS3 (Flexbox            |
+| Grid)            |
+| State Management | Context API (Cart & Auth Management)      |
+| Backend / API    | JSON Server (RESTful API), Host on Render |
+| Infrastructure   | Vercel (CI/CD), GitHub                    |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Diem noi bat ve mat ky thuat
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- CI/CD Pipeline: Tich hop quy trinh trien khai tu dong (Continuous Deployment) tu GitHub len Vercel.
+- API Integration: Xu ly bat dong bo du lieu thuc tu may chu API tren Render.
+- Clean Code: Ap dung cau truc thu muc ro rang theo Component-based Architecture.
+- Deployment Config: Toi uu hoa cau hinh build tren Production (Environment Variables).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Huong dan chay du an tai may cuc bo (Local)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Clone du an:
+   git clone https://github.com/syhuyit/DeliciaGarden.git
+   cd DeliciaGarden
 
-## Learn More
+2. Cai dat thu vien:
+   npm install
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. Khoi chay:
+   npm start
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Ung dung se chay tai: http://localhost:3000
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Lien he
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Tac gia: Nguyen Sy Huy - Sinh vien nam 3 PTIT
+- Email: nguyensyhuy06122005@gmail.com
+- GitHub: https://github.com/syhuyit
